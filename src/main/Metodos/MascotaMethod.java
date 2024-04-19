@@ -145,4 +145,44 @@ public class MascotaMethod {
 
     }
 
+    public static void editMascota(){
+
+        String name = JOptionPane.showInputDialog(null,
+        "Introduzca el nombre de la mascota cuyos datos seran editados");
+
+        Mascota pet = new Mascota(name);
+        for (Mascota pet : petArray) {
+            if (int i = 0; i < almacen; i ++) {
+                JOptionPane.showMessageDialog(null, petArray[i]);
+                int respuesta = JOptionPane.showConfirmDialog(null, 
+                    "¿Es la mascota correcta?", "Confirmación",
+                    JOptionPane.YES_NO_OPTION);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    String nombre = JOptionPane.showInputDialog(null,
+                    "Ingrese el nombre de la mascota " +  (almacen + 1) + ":", 
+                    "NOMBRE");
+            
+                    String especie = JOptionPane.showInputDialog(null,
+                    "Ingrese la especie de la mascota " +  (almacen + 1) + ":", 
+                    "ESPECIE");
+            
+                    String raza = JOptionPane.showInputDialog(null,
+                    "Ingrese la raza de la mascota " +  (almacen + 1) + ":", 
+                    "RAZA");
+            
+                    String color = JOptionPane.showInputDialog(null,
+                    "Ingrese la color de la mascota " +  (almacen + 1) + ":", 
+                    "COLOR");
+            
+                    Mascota newPet = new Mascota(nombre, especie, raza, color);
+
+                    petArray[i] = newPet;
+                    
+                    JOptionPane.showMessageDialog(null, 
+                    newPet.toString());
+                }
+            }
+        }
+    }
+
 }
