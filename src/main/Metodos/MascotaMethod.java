@@ -12,7 +12,7 @@ public class MascotaMethod {
 
     static int almacen = 0;
 
-    public static void Mascota(){
+    public static void mascota(){
         do{
             //Try catch para evitar que el programa termine si hay un error
             try{
