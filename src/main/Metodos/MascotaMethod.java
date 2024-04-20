@@ -146,7 +146,7 @@ public class MascotaMethod {
 
     }
 
-    public static void eraseMascota() {
+    public static void editMascota() {
         String nameToRemove = JOptionPane.showInputDialog(
                 "Ingrese el nombre de la mascota a cambiar", 
                 "NOMBRE");
@@ -182,7 +182,27 @@ public class MascotaMethod {
     }
 
     public static void eraseMascota(){
+        String nameToRemove = JOptionPane.showInputDialog(
+            "Ingrese el nombre de la mascota a eliminar", 
+            "NOMBRE");
 
+        for (int i = 0; i < petArray.length; i++) {
+            if (petArray[i]!= null && petArray[i].getNombre().equals(nameToRemove)) {
+                for (int j = i; j < petArray.length - 1; j++) {
+                    petArray[j] = petArray[j + 1];
+                }
+                petArray[petArray.length - 1] = null;
+                almacen--;
+                JOptionPane.showMessageDialog(null, 
+                        "Mascota eliminada: \n" + nameToRemove, 
+                        "Eliminacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }
+    
+        JOptionPane.showMessageDialog(null, 
+                "La mascota con el nombre " + nameToRemove + " no ha sido encontrada.", 
+                "Búsqueda Fallida", JOptionPane.WARNING_MESSAGE);
     }
 
 }
