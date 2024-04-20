@@ -33,6 +33,7 @@ public class MascotaMethod {
                     break;
 
                     case 1:
+                    eraseMascota();
                     break;
 
                     case 2:
@@ -44,7 +45,7 @@ public class MascotaMethod {
                     break;
                     
                     case 4:
-                    
+                    editMascota();
                     break;
 
                     case 5:
@@ -151,7 +152,7 @@ public class MascotaMethod {
         "Introduzca el nombre de la mascota cuyos datos seran editados");
 
         Mascota pet = new Mascota(name);
-        for (Mascota pet : petArray) {
+        for (pet : petArray) {
             if (int i = 0; i < almacen; i ++) {
                 JOptionPane.showMessageDialog(null, petArray[i]);
                 int respuesta = JOptionPane.showConfirmDialog(null, 
@@ -180,9 +181,15 @@ public class MascotaMethod {
                     
                     JOptionPane.showMessageDialog(null, 
                     newPet.toString());
+                    JOptionPane.showMessageDialog(null,
+                    printMascota());
                 }
             }
         }
+    }
+
+    public static void eraseMascota(){
+
     }
 
 }
