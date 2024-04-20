@@ -68,7 +68,7 @@ public class Mascota {
         return  "Nombre: " + nombre +
                 "\nEspecie: " + especie +
                 "\nRaza: " + raza +
-                "\nColor: " + color;
+                "\nColor: " + color + "\n";
     }
 
     @Override
@@ -77,19 +77,15 @@ public class Mascota {
         if (obj == null) {
             return false;
         }
-        // if objs have the same serie in me memory return true
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
-        
         if (obj.getClass() != this.getClass()) {
-            return false;   
+            return false;
         }
-        
-        //  aux obj to compare
+
         Mascota aux = (Mascota) obj;
-        //  if the object "codigo" are the same, return true
-        return this.nombre == aux.nombre;
+        return this.nombre.equals(aux.nombre);
         
     }
 

@@ -15,7 +15,7 @@ public class MascotaMethod {
     public static void mascota(){
         do{
             //Try catch para evitar que el programa termine si hay un error
-            try{
+            try{ 
                 Object[] options = {"Insertar", "Borrar", "Buscar", "Imprimir", "Editar", "Salir"};
 
                 selectCamisa = JOptionPane.showOptionDialog(null,
@@ -55,7 +55,7 @@ public class MascotaMethod {
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null,"Ups! Error!");
-            }
+            } 
         }while(selectCamisa != 5);
     }
 
@@ -103,7 +103,6 @@ public class MascotaMethod {
             almacen ++;
  
         }
-
 
     }
 
@@ -182,6 +181,7 @@ public class MascotaMethod {
     }
 
     public static void eraseMascota(){
+
         String nameToRemove = JOptionPane.showInputDialog(
             "Ingrese el nombre de la mascota a eliminar", 
             "NOMBRE");
@@ -191,7 +191,7 @@ public class MascotaMethod {
                 for (int j = i; j < petArray.length - 1; j++) {
                     petArray[j] = petArray[j + 1];
                 }
-                petArray[i] = null;
+                petArray[petArray.length - 1] = null;
                 almacen--;
                 JOptionPane.showMessageDialog(null, 
                         "Mascota eliminada: \n" + nameToRemove, 
