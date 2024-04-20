@@ -191,7 +191,7 @@ public class MascotaMethod {
                 for (int j = i; j < petArray.length - 1; j++) {
                     petArray[j] = petArray[j + 1];
                 }
-                petArray[petArray.length - 1] = null;
+                petArray[i] = null;
                 almacen--;
                 JOptionPane.showMessageDialog(null, 
                         "Mascota eliminada: \n" + nameToRemove, 
