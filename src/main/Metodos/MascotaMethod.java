@@ -54,8 +54,10 @@ public class MascotaMethod {
                 }
 
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ups! Error!");
+                JOptionPane.showMessageDialog(null,"Ups! Error!",
+                "ERROR", JOptionPane.WARNING_MESSAGE);
             } 
+
         }while(selectCamisa != 5);
     }
 
@@ -75,8 +77,8 @@ public class MascotaMethod {
 
             } else {
                 String nombre = JOptionPane.showInputDialog(null,
-                "Ingrese el nombre de la mascota " +  (almacen + 1) + ":", 
-                "NOMBRE");
+                "Ingrese el nombre de la mascota " +  (almacen + 1) + ":",
+                "MASCOTA");
 
                 String especie = JOptionPane.showInputDialog(null,
                 "Ingrese la especie de la mascota " +  (almacen + 1) + ":", 
@@ -109,8 +111,7 @@ public class MascotaMethod {
     public static void findMascota(){
 
         String nameFind = JOptionPane.showInputDialog(
-                "Ingrese el nombre de la mascota", 
-                "NOMBRE");
+                "Ingrese el nombre de la mascota");
         Mascota petFind = new Mascota(nameFind);
 
         for (Mascota pet : petArray) {
@@ -147,62 +148,115 @@ public class MascotaMethod {
 
     public static void editMascota() {
         String nameToRemove = JOptionPane.showInputDialog(
-                "Ingrese el nombre de la mascota a cambiar", 
-                "NOMBRE");
+            "Ingrese el nombre de la mascota a cambiar"
+        );
+
+        Mascota petToErase = new Mascota(nameToRemove);
     
         for (int i = 0; i < petArray.length; i++) {
-            if (petArray[i]!= null && petArray[i].getNombre().equals(nameToRemove)) {
-                String newNombre = JOptionPane.showInputDialog(
+
+            if (petArray[i]!= null && petArray[i].equals(petToErase)) {
+
+                int confirmacion = JOptionPane.showConfirmDialog(
+                    null, 
+                    "¿Estás seguro de que deseas editar la siguiente Mascota?\n" + 
+                    petArray[i].toString(), 
+                    "Confirmar Edición", 
+                    JOptionPane.YES_NO_OPTION
+                );
+
+                if(confirmacion == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(
+                        null, "Edicion cancelada", 
+                        "Editar Cancelada", 
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    return;
+                }
+
+                if(confirmacion == JOptionPane.YES_OPTION){
+                    String newNombre = JOptionPane.showInputDialog(
                         "Ingrese el nuevo nombre de la mascota", 
                         "NOMBRE");
-                String newEspecie = JOptionPane.showInputDialog(
-                        "Ingrese la nueva especie de la mascota", 
-                        "ESPECIE");
-                String newRaza = JOptionPane.showInputDialog(
-                        "Ingrese la nueva raza de la mascota", 
-                        "RAZA");
-                String newColor = JOptionPane.showInputDialog(
-                        "Ingrese el nuevo color de la mascota", 
-                        "COLOR");
-    
-                Mascota newPet = new Mascota(newNombre, newEspecie, newRaza, newColor);
-                petArray[i] = newPet;
-    
-                JOptionPane.showMessageDialog(null, 
+                    String newEspecie = JOptionPane.showInputDialog(
+                            "Ingrese la nueva especie de la mascota", 
+                            "ESPECIE");
+                    String newRaza = JOptionPane.showInputDialog(
+                            "Ingrese la nueva raza de la mascota", 
+                            "RAZA");
+                    String newColor = JOptionPane.showInputDialog(
+                            "Ingrese el nuevo color de la mascota", 
+                            "COLOR");
+        
+                    Mascota newPet = new Mascota(newNombre, newEspecie, newRaza, newColor);
+                    petArray[i] = newPet;
+        
+                    JOptionPane.showMessageDialog(null, 
                         "Mascota actualizada: \n" + newPet.toString(), 
-                        "Actualizacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
-                return;
+                        "Actualizacion Exitosa", JOptionPane.INFORMATION_MESSAGE
+                    );
+                    printMascota();
+                    return;
+                }
             }
         }
     
         JOptionPane.showMessageDialog(null, 
-                "La mascota con el nombre " + nameToRemove + " no ha sido encontrada.", 
-                "Búsqueda Fallida", JOptionPane.WARNING_MESSAGE);
+            "La mascota con el nombre " + nameToRemove + " no ha sido encontrada.", 
+            "Búsqueda Fallida", JOptionPane.WARNING_MESSAGE
+        );
     }
 
     public static void eraseMascota(){
 
         String nameToRemove = JOptionPane.showInputDialog(
-            "Ingrese el nombre de la mascota a eliminar", 
-            "NOMBRE");
+            "Ingrese el nombre de la mascota a eliminar");
+
+        Mascota petToErase = new Mascota(nameToRemove);
 
         for (int i = 0; i < petArray.length; i++) {
-            if (petArray[i]!= null && petArray[i].getNombre().equals(nameToRemove)) {
+
+            if (petArray[i]!= null && petArray[i].equals(petToErase)) {
+
+                int confirmacion = JOptionPane.showConfirmDialog(
+                    null, 
+                    "¿Estás seguro de que deseas eliminar la siguinete Mascota?\n" + 
+                    petArray[i].toString(), 
+                    "Confirmar Eliminación", 
+                    JOptionPane.YES_NO_OPTION
+                );
+
+                if(confirmacion == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(
+                        null, "Eliminacion cancelada", 
+                        "Eliminacion Cancelada", 
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    return;
+                }
+
+                JOptionPane.showMessageDialog(null, 
+                    "Mascota eliminada: \n" + nameToRemove, 
+                    "Eliminacion Exitosa", JOptionPane.INFORMATION_MESSAGE
+                );
+
                 for (int j = i; j < petArray.length - 1; j++) {
                     petArray[j] = petArray[j + 1];
                 }
+
                 petArray[petArray.length - 1] = null;
+
                 almacen--;
-                JOptionPane.showMessageDialog(null, 
-                        "Mascota eliminada: \n" + nameToRemove, 
-                        "Eliminacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
+                printMascota();
                 return;
             }
         }
     
         JOptionPane.showMessageDialog(null, 
-                "La mascota con el nombre " + nameToRemove + " no ha sido encontrada.", 
-                "Búsqueda Fallida", JOptionPane.WARNING_MESSAGE);
+            "La mascota con el nombre " + nameToRemove + " no ha sido encontrada.", 
+            "Búsqueda Fallida", JOptionPane.WARNING_MESSAGE
+        );
+
     }
 
 }
